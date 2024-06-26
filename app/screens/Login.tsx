@@ -1,13 +1,17 @@
 import {
   View,
   Text,
+  Image,
   StyleSheet,
   TextInput,
   ActivityIndicator,
+  useWindowDimensions,
   Button,
   KeyboardAvoidingView,
 } from 'react-native';
 import React, { useState } from 'react';
+import Logo from '../../assets/images/Logo_1.png';
+import CustomButtons from '../components/CustomButtons';
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import {
   createUserWithEmailAndPassword,
@@ -15,6 +19,8 @@ import {
 } from 'firebase/auth';
 
 const Login = () => {
+  const { height } = useWindowDimensions();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,6 +60,9 @@ const Login = () => {
   return (
     <View style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
+        <View style={styles.root}>
+        <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
+        </View>
         <TextInput
           value={email}
           style={styles.input}
@@ -74,8 +83,8 @@ const Login = () => {
           <ActivityIndicator size="large" color="#0000f" />
         ) : (
           <>
-            <Button title="Login" onPress={signIn} />
-            <Button title="Create Account" onPress={signUp} />
+            <CustomButtons text="Login" onPress={signIn} type="PRIMARY" />
+            <CustomButtons text="Sign Up" onPress={signUp} type="TERTIARY" />
           </>
         )}
       </KeyboardAvoidingView>
@@ -86,10 +95,14 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
+    root: {
+        alignItems: 'center',
+    },
   container: {
     marginHorizontal: 20,
     flex: 1,
     justifyContent: 'center',
+    padding: 20,
   },
   input: {
     marginVertical: 4,
@@ -99,7 +112,15 @@ const styles = StyleSheet.create({
     padding: 10,
     backgroundColor: '#fff',
   },
+  logo: {
+    width: '70%',
+    maxWidth: 300,
+    maxHeight: 200,
+  },
   button: {
-    padding: 10,
+    paddingHorizontal: 10,
+    marginVertical: 5,
+    paddingBottom: 10,
+    marginBottom: 20,
   },
 });
