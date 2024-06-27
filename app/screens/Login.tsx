@@ -10,7 +10,7 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import React, { useState } from 'react';
-import Logo from '../../assets/images/Logo_1.png';
+
 import CustomButtons from '../components/CustomButtons';
 import { FIREBASE_AUTH } from '../../FirebaseConfig';
 import {
@@ -25,6 +25,8 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const auth = FIREBASE_AUTH;
+
+  const logo = require('../../assets/images/Logo_1.png');
 
   const signIn = async () => {
     setLoading(true);
@@ -61,7 +63,10 @@ const Login = () => {
     <View style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
         <View style={styles.root}>
-        <Image source={Logo} style={[styles.logo, { height: height * 0.3 }]} />
+          <Image
+            source={logo}
+            style={[styles.logo, { height: height * 0.3 }]}
+          />
         </View>
         <TextInput
           value={email}
@@ -95,9 +100,9 @@ const Login = () => {
 export default Login;
 
 const styles = StyleSheet.create({
-    root: {
-        alignItems: 'center',
-    },
+  root: {
+    alignItems: 'center',
+  },
   container: {
     marginHorizontal: 20,
     flex: 1,

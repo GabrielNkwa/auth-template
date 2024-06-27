@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
 
   container_PRIMARY: {
-    backgroundColor: 'green',
+    backgroundColor: 'black',
   },
 
   container_SECONDARY: {
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
 
   container_TERTIARY: {
-    backgroundColor: '#DD4D44',
+    backgroundColor: 'green',
   },
   text: {
     fontWeight: 'bold',
